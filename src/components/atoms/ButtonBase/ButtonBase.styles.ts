@@ -15,15 +15,15 @@ const colorsByType: Record<ButtonBaseType, (theme: DefaultTheme) => string> = {
 const sizeStyles = {
   small: {
     width: `${moderateScale(40)}px`,
-    height: `100%`,
+    height: `${moderateScale(40)}px`,
   },
   medium: {
     width: `${moderateScale(150)}px`,
-    height: `100%`,
+    height: `${moderateScale(40)}px`,
   },
   large: {
-    width: '100%',
-    height: `100%`,
+    width: `${moderateScale(350)}px`,
+    height: `${moderateScale(40)}px`,
   },
 };
 
