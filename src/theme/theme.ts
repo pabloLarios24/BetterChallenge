@@ -10,6 +10,7 @@ export const lightTheme = {
     warning: '#FACC15',
     error: '#EF4444',
     textButton: '#F1F5F9',
+    border: '#cbd5e1',
   },
 };
 
@@ -25,6 +26,7 @@ export const darkTheme = {
     warning: '#FDE047',
     error: '#F87171',
     textButton: '#F1F5F9',
+    border: '#334155',
   },
 };
 
