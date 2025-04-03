@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, ContentContainer, IconContainer} from './Header.styles.ts';
 import {IconCustom, SearchInput, TextBase} from '@/components';
 
-interface IHeaderProps {
+export interface IHeaderProps {
   needBack?: boolean;
   onPressBack?: () => void;
   isInput?: boolean;
