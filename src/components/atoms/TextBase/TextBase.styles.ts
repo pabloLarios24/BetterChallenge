@@ -9,7 +9,7 @@ interface IStyledTextBaseProps {
   $isButton?: boolean;
 }
 
-const sizeByType = {
+export const sizeByType = {
   h1: 18,
   h2: 16,
   h3: 14,
