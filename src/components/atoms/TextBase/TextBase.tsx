@@ -8,13 +8,15 @@ export const TextBase = ({
   bold,
   italic,
   isButton,
+  ...rest
 }: ITextBaseProps) => {
   return (
     <StyledTextBase
       $bold={bold}
       $italic={italic}
       $type={textType}
-      $isButton={isButton}>
+      $isButton={isButton}
+      {...rest}>
       {text}
     </StyledTextBase>
   );

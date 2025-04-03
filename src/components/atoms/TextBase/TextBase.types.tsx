@@ -6,4 +6,5 @@ export interface ITextBaseProps {
   bold?: boolean;
   italic?: boolean;
   isButton?: boolean;
+  numberOfLines?: number;
 }
