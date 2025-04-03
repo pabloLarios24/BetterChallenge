@@ -5,12 +5,12 @@ import {useTheme} from 'styled-components/native';
 import {IIconProps} from './Icon.types';
 import {moderateScale, verticalScale} from '@/utils';
 
-export const CloseIcon = ({size = 24, color}: IIconProps) => {
+export const CloseIcon = ({sizeIcon = 24, color}: IIconProps) => {
   const theme = useTheme();
   return (
     <Svg
-      width={moderateScale(size)}
-      height={verticalScale(size)}
+      width={moderateScale(sizeIcon)}
+      height={verticalScale(sizeIcon)}
       viewBox="0 0 24 24"
       fill="none"
       stroke={theme.colors[color ?? 'text']}

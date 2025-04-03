@@ -4,12 +4,12 @@ import {useTheme} from 'styled-components/native';
 
 import {IIconProps} from './Icon.types';
 
-export const MinusIcon = ({size = 24, color}: IIconProps) => {
+export const MinusIcon = ({sizeIcon = 24, color}: IIconProps) => {
   const theme = useTheme();
   return (
     <Svg
-      width={size}
-      height={size}
+      width={sizeIcon}
+      height={sizeIcon}
       viewBox="0 0 24 24"
       fill="none"
       stroke={theme.colors[color ?? 'text']}
