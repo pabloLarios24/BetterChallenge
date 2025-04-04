@@ -17,3 +17,15 @@ export const selectMergedProducts = createSelector(
     });
   },
 );
+
+export const selectFilteredProducts = (searchTerm: string) =>
+  createSelector([selectMergedProducts], products =>
+    products.filter(product =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase()),
+    ),
+  );
+
+export const selectMergedProductById = (id: number) =>
+  createSelector([selectMergedProducts], (products: Product[]) =>
+    products.find(product => product.id === id),
+  );

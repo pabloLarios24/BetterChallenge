@@ -13,6 +13,10 @@ interface ICardProductProps {
   imageUrl: string;
   price: number;
   quantity: number;
+  addToCart: () => void;
+  increment: () => void;
+  decrement: () => void;
+  onPress?: () => void;
 }
 
 export const CardProduct = ({
@@ -21,9 +25,13 @@ export const CardProduct = ({
   imageUrl,
   price,
   quantity,
+  addToCart,
+  decrement,
+  increment,
+  onPress,
 }: ICardProductProps) => {
   return (
-    <CardContainer>
+    <CardContainer disabled={!onPress} onPress={onPress}>
       <ImageContainer>
         <ImageCustom imageUrl={imageUrl} />
       </ImageContainer>
@@ -35,14 +43,14 @@ export const CardProduct = ({
           {quantity > 0 ? (
             <SpinnerInput
               value={quantity}
-              onPressPlus={() => {}}
-              onPressMinus={() => {}}
+              onPressPlus={increment}
+              onPressMinus={decrement}
             />
           ) : (
             <ButtonCustom
               size={'medium'}
               type={'primary'}
-              onPress={() => {}}
+              onPress={addToCart}
               text={'Agregar al carrito'}
             />
           )}

@@ -10,7 +10,7 @@ export const ImageCustom = ({imageUrl}: IImageCustomProps) => {
   return (
     <Container>
       {imageUrl ? (
-        <StyledImage src={imageUrl} />
+        <StyledImage src={imageUrl} resizeMode={'contain'} />
       ) : (
         <IconCustom name={'image'} sizeIcon={44} color={'text'} />
       )}

@@ -25,7 +25,7 @@ export const darkTheme = {
     success: '#4ADE80',
     warning: '#FDE047',
     error: '#F87171',
-    textButton: '#F1F5F9',
+    textButton: '#111827',
     border: '#cbd5e1',
   },
 };

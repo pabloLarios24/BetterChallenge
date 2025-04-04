@@ -1,4 +1,6 @@
 import {AxiosInstance} from 'axios';
+import {store} from '@/store';
+import {ADD_TOAST} from '@/store/toast/types.ts';
 
 export const setupInterceptors = (axiosInstance: AxiosInstance) => {
   axiosInstance.interceptors.response.use(
@@ -6,32 +8,46 @@ export const setupInterceptors = (axiosInstance: AxiosInstance) => {
     error => {
       if (error.response) {
         const status = error.response.status;
-
+        let message = 'Error inesperado';
         switch (status) {
           case 401:
-            console.warn('No autorizado, redirige a login si aplica');
+            message = 'No autorizado. Por favor inicia sesión';
             break;
           case 500:
-            console.error('Error del servidor');
+            message = 'Error del servidor. Intenta más tarde';
             break;
           default:
-            console.warn('Error genérico');
+            message = 'Algo salió mal, intenta nuevamente';
         }
+        store.dispatch({
+          type: ADD_TOAST,
+          payload: {
+            id: Date.now(),
+            type: 'error',
+            message,
+          },
+        });
       } else {
-        console.warn('Error de red, revisa tu conexión');
+        store.dispatch({
+          type: ADD_TOAST,
+          payload: {
+            id: Date.now(),
+            type: 'error',
+            message: 'Error de red. Verifica tu conexión',
+          },
+        });
       }
 
       return Promise.reject(error);
     },
   );
-  // Log de request
   axiosInstance.interceptors.request.use(request => {
-    console.log('📤 Request:', {
-      url: request.url,
-      method: request.method,
-      headers: request.headers,
-      data: request.data,
-    });
+    // console.log('📤 Request:', {
+    //   url: request.url,
+    //   method: request.method,
+    //   headers: request.headers,
+    //   data: request.data,
+    // });
     return request;
   });
 };

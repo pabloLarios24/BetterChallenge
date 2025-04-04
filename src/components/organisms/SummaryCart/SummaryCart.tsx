@@ -13,7 +13,7 @@ export const SummaryCart = ({subTotal, totalItems, onPress}: ISummaryCart) => {
     <Container>
       <Row>
         <TextBase text={'Subtotal '} textType={'h2'} />
-        <TextBase text={`$${subTotal}`} textType={'h2'} bold />
+        <TextBase text={`$${subTotal.toFixed(2)}`} textType={'h2'} bold />
       </Row>
       <ButtonContainer>
         <ButtonCustom

@@ -10,6 +10,7 @@ export interface IHeaderProps {
   value?: string;
   title?: string;
   onChangeText?: (value: string) => void;
+  onEndEditing?: () => void;
   onPressDelete?: () => void;
 }
 
@@ -22,6 +23,7 @@ export const Header = ({
   title,
   onChangeText,
   onPressDelete,
+  onEndEditing,
 }: IHeaderProps) => {
   return (
     <Container>
@@ -31,12 +33,13 @@ export const Header = ({
         </IconContainer>
       )}
       <ContentContainer $needBack={!!needBack}>
-        {isInput && onChangeText && onPressDelete ? (
+        {isInput && onChangeText && onPressDelete && onEndEditing ? (
           <SearchInput
             onChangeText={onChangeText}
             value={value ?? ''}
             placeholder={placeholder ?? ''}
             onPressDelete={onPressDelete}
+            onEndEditing={onEndEditing}
           />
         ) : (
           <TextBase textType={'h1'} text={title ?? ''} isButton />

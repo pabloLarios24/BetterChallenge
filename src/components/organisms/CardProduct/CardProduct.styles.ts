@@ -1,13 +1,15 @@
 import styled from 'styled-components/native';
-import {moderateScale} from '@/utils';
+import {moderateScale, verticalScale} from '@/utils';
 
-export const CardContainer = styled.View`
-  width: 98%;
-  height: ${moderateScale(150)}px;
+export const CardContainer = styled.TouchableOpacity`
+  width: 95%;
+  height: ${moderateScale(170)}px;
   flex-direction: row;
   border-radius: ${moderateScale(10)}px;
   border-color: ${({theme}) => theme.colors.border};
   border-width: 1px;
+  margin-bottom: ${moderateScale(10)};
+  padding: ${verticalScale(10)}px;
 `;
 
 export const ImageContainer = styled.View`

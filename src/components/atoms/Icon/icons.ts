@@ -3,6 +3,7 @@ import {
   CloseIcon,
   HomeIcon,
   ImageIcon,
+  MenuIcon,
   MinusIcon,
   MoonIcon,
   PlusIcon,
@@ -22,6 +23,7 @@ export const iconMap = {
   shoppingCart: ShoppingCartIcon,
   image: ImageIcon,
   search: SearchIcon,
+  menu: MenuIcon,
 };
 
 export type IconName = keyof typeof iconMap;

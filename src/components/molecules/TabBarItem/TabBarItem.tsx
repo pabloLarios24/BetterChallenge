@@ -1,5 +1,5 @@
 import {IconName} from '@/components/atoms/Icon/icons.ts';
-import {Container} from './TabBarItem.styles.ts';
+import {Container, ContainerQuantity} from './TabBarItem.styles.ts';
 import {IconCustom, TextBase} from '@/components';
 
 export interface ITabBarItemProps {
@@ -7,6 +7,7 @@ export interface ITabBarItemProps {
   nameIcon: IconName;
   isSelected: boolean;
   onPress?: () => void;
+  quantity?: number;
 }
 
 export const TabBarItem = ({
@@ -14,6 +15,7 @@ export const TabBarItem = ({
   nameIcon,
   isSelected,
   onPress,
+  quantity,
 }: ITabBarItemProps) => {
   return (
     <Container onPress={onPress}>
@@ -28,6 +30,11 @@ export const TabBarItem = ({
         text={title}
         isButton={isSelected}
       />
+      {quantity && (
+        <ContainerQuantity>
+          <TextBase textType={'h6'} text={quantity.toString()} bold isButton />
+        </ContainerQuantity>
+      )}
     </Container>
   );
 };

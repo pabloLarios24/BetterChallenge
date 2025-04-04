@@ -14,6 +14,7 @@ interface ISearchInputProps {
   placeholder: string;
   onChangeText: (text: string) => void;
   onPressDelete: () => void;
+  onEndEditing: () => void;
 }
 
 export const SearchInput = ({
@@ -21,6 +22,7 @@ export const SearchInput = ({
   placeholder,
   onChangeText,
   onPressDelete,
+  onEndEditing,
 }: ISearchInputProps) => {
   const theme = useTheme();
   return (
@@ -36,6 +38,7 @@ export const SearchInput = ({
           maxLength={50}
           numberOfLines={1}
           placeholderTextColor={theme.colors.border}
+          onEndEditing={onEndEditing}
         />
       </InputContainer>
       <IconContainer>

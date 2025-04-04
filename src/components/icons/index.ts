@@ -8,3 +8,4 @@ export * from './Plus.tsx';
 export * from './Search.tsx';
 export * from './ShoppingCart.tsx';
 export * from './Sun.tsx';
+export * from './Menu.tsx';
