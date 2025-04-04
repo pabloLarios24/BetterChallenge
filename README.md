@@ -65,6 +65,6 @@ redux-persist to persist cart state in AsyncStorage
 
 - MVVM hybrid
 
-### 🛒 Features
+### 🛒 Author
 
 Developed with ❤️ by Pablo Larios
