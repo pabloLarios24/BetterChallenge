@@ -21,8 +21,8 @@ Follow these steps to run the project locally.
 ### 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/better-challenge.git
-cd better-challenge
+git clone git@github.com:pabloLarios24/BetterChallenge.git
+cd BetterChallenge
 yarn install
 ```
 
