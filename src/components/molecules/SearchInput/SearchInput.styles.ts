@@ -4,7 +4,7 @@ import {sizeByType} from '@/components';
 
 export const Container = styled.View`
   width: 100%;
-  height: ${verticalScale(35)};
+  height: ${verticalScale(35)}px;
   border-color: ${({theme}) => theme.colors.border};
   border-width: 1px;
   border-radius: 10px;
@@ -30,5 +30,5 @@ export const InputContainer = styled.View`
 export const StyledInput = styled.TextInput`
   width: 100%;
   color: ${({theme}) => theme.colors.text};
-  font-size: ${moderateScale(sizeByType.h4)};
+  font-size: ${moderateScale(sizeByType.h4)}px;
 `;

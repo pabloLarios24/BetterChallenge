@@ -20,7 +20,7 @@ const TabNavigator: React.FC = () => {
       />
       <Tab.Screen
         options={{title: 'Carrito'}}
-        name={'ShoppingCart'}
+        name={'ShoppingCartTab'}
         component={ShoppingCartStack}
       />
       <Tab.Screen

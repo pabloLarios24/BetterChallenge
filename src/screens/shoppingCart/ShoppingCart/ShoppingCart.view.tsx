@@ -1,49 +1,31 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 
 import {verticalScale} from '@/utils';
-import {AppLayout, CardProduct, SummaryCart, TextBase} from '@/components';
+import {AppLayout, SummaryCart, TextBase} from '@/components';
 import {Product} from '@/types';
 
 interface IShoppingCartViewProps {
   products: Product[];
   totalAmount: number;
   totalItems: number;
-  handleDecreaseQuantity: (product: Product) => void;
-  handleIncrementQuantity: (product: Product) => void;
-  handleAddToCart: (product: Product) => void;
+  renderItem: ListRenderItem<Product>;
 }
 
 const ShoppingCartView = ({
   products,
   totalAmount,
   totalItems,
-  handleAddToCart,
-  handleIncrementQuantity,
-  handleDecreaseQuantity,
+  renderItem,
 }: IShoppingCartViewProps) => {
   return (
     <AppLayout title={'Carrito de compras'}>
       <FlatList
+        key={'FlatListShoppingCart'}
         data={products}
         keyExtractor={item => item.id.toString()}
-        contentContainerStyle={{
-          alignItems: 'center',
-          marginTop: verticalScale(10),
-          paddingBottom: verticalScale(10),
-        }}
-        renderItem={({item}) => (
-          <CardProduct
-            imageUrl={item.image}
-            title={item.title}
-            description={item.description}
-            price={item.price}
-            quantity={item.quantity ?? 0}
-            decrement={() => handleDecreaseQuantity(item)}
-            addToCart={() => handleAddToCart(item)}
-            increment={() => handleIncrementQuantity(item)}
-          />
-        )}
+        contentContainerStyle={styles.flatListContent}
+        renderItem={renderItem}
         ListFooterComponent={
           <SummaryCart
             subTotal={totalAmount}
@@ -60,3 +42,11 @@ const ShoppingCartView = ({
 };
 
 export default ShoppingCartView;
+
+const styles = StyleSheet.create({
+  flatListContent: {
+    alignItems: 'center',
+    marginTop: verticalScale(10),
+    paddingBottom: verticalScale(10),
+  },
+});

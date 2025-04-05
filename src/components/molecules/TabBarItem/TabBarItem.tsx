@@ -30,7 +30,7 @@ export const TabBarItem = ({
         text={title}
         isButton={isSelected}
       />
-      {quantity && (
+      {!!quantity && (
         <ContainerQuantity>
           <TextBase textType={'h6'} text={quantity.toString()} bold isButton />
         </ContainerQuantity>

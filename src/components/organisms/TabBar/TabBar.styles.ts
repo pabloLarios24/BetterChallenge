@@ -8,10 +8,10 @@ interface IContainer {
 export const ContainerTabBar = styled.View`
   flex-direction: row;
   width: 98%;
-  height: ${verticalScale(45)};
+  height: ${verticalScale(45)}px;
   align-items: center;
   justify-content: center;
-  gap: ${moderateScale(20)};
+  gap: ${moderateScale(20)}px;
   padding: ${verticalScale(5)}px ${moderateScale(10)}px ${moderateScale(10)}px
     ${verticalScale(5)}px;
   background-color: ${({theme}) => theme.colors.primary};

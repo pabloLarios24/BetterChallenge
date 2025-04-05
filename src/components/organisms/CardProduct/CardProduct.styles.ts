@@ -8,7 +8,7 @@ export const CardContainer = styled.TouchableOpacity`
   border-radius: ${moderateScale(10)}px;
   border-color: ${({theme}) => theme.colors.border};
   border-width: 1px;
-  margin-bottom: ${moderateScale(10)};
+  margin-bottom: ${moderateScale(10)}px;
   padding: ${verticalScale(10)}px;
 `;
 

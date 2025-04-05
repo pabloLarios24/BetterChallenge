@@ -19,7 +19,7 @@ interface ICardProductProps {
   onPress?: () => void;
 }
 
-export const CardProduct = ({
+const CardProductPureComponent = ({
   title,
   description,
   imageUrl,
@@ -30,6 +30,7 @@ export const CardProduct = ({
   increment,
   onPress,
 }: ICardProductProps) => {
+  console.log('render', title);
   return (
     <CardContainer disabled={!onPress} onPress={onPress}>
       <ImageContainer>
@@ -59,3 +60,16 @@ export const CardProduct = ({
     </CardContainer>
   );
 };
+
+export const CardProduct = React.memo(
+  CardProductPureComponent,
+  (prevProps, nextProps) => {
+    return (
+      prevProps.title === nextProps.title &&
+      prevProps.description === nextProps.description &&
+      prevProps.imageUrl === nextProps.imageUrl &&
+      prevProps.price === nextProps.price &&
+      prevProps.quantity === nextProps.quantity
+    );
+  },
+);

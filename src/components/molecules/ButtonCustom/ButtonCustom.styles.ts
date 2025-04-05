@@ -6,5 +6,5 @@ export const StyledViewButton = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: ${moderateScale(5)};
+  gap: ${moderateScale(5)}px;
 `;

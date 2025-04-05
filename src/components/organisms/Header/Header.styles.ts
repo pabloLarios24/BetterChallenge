@@ -7,7 +7,7 @@ export interface IContainerProps {
 
 export const Container = styled.View`
   width: 100%;
-  height: ${verticalScale(50)};
+  height: ${verticalScale(50)}px;
   flex-direction: row;
   padding: ${verticalScale(5)}px ${moderateScale(5)}px ${moderateScale(5)}px
     ${verticalScale(5)}px;
@@ -22,7 +22,7 @@ export const IconContainer = styled.TouchableOpacity`
 `;
 
 export const ContentContainer = styled.View<IContainerProps>`
-  width: ${({$needBack}) => ($needBack ? '90%' : '100%')};
+  width: ${({$needBack}) => ($needBack ? '90%' : '100%')}px;
   height: 100%;
   align-items: center;
   justify-content: center;

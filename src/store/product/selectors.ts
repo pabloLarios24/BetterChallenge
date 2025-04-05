@@ -7,12 +7,19 @@ const selectCart = (state: RootState) => state.cart.products;
 
 export const selectMergedProducts = createSelector(
   [selectProducts, selectCart],
-  (products: Product[], cartItems: Product[]): Product[] => {
+  (products, cartItems): Product[] => {
     return products.map(product => {
       const itemInCart = cartItems.find(item => item.id === product.id);
+      const quantity = itemInCart?.quantity ?? 0;
+      if (!itemInCart) {
+        return product;
+      }
+      if ((product as any).quantity === quantity) {
+        return product;
+      }
       return {
         ...product,
-        quantity: itemInCart?.quantity ?? 0,
+        quantity,
       };
     });
   },

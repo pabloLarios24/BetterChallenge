@@ -1,50 +1,52 @@
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {useCallback} from 'react';
+import {useSelector} from 'react-redux';
+import {ListRenderItem} from 'react-native';
+
 import {RootState} from '@/store';
 import {Product} from '@/types';
-import {
-  decrementQuantity,
-  incrementQuantity,
-  removeFromCart,
-} from '@/store/cart/actions.ts';
 import ShoppingCartView from '@/screens/shoppingCart/ShoppingCart/ShoppingCart.view.tsx';
 import {
   selectTotalCartItems,
   selectTotalCartPrice,
 } from '@/store/cart/selectors.ts';
-import {addToCartWithToast} from '@/utils';
+import {CardProduct} from '@/components';
+import {useProductActions} from '@/hooks/useProductActions.ts';
 
 const ShoppingCartController: React.FC = () => {
   const cartProducts = useSelector((state: RootState) => state.cart.products);
   const totalItems = useSelector(selectTotalCartItems);
   const totalAmount = useSelector(selectTotalCartPrice);
-  const dispatch = useDispatch();
 
-  const handleDecreaseQuantity = (product: Product) => {
-    if (product.quantity) {
-      if (product.quantity === 1) {
-        dispatch(removeFromCart(product.id));
-      } else {
-        dispatch(decrementQuantity(product.id));
-      }
-    }
-  };
+  const {handleAddToCart, handleIncrementQuantity, handleDecreaseQuantity} =
+    useProductActions(cartProducts);
 
-  const handleAddToCart = (product: Product) => {
-    addToCartWithToast(dispatch, product, cartProducts);
-  };
+  const renderItem: ListRenderItem<Product> = useCallback(
+    ({item}: {item: Product}) => {
+      const handleDecrement = () => handleDecreaseQuantity(item);
+      const handleAdd = () => handleAddToCart(item);
+      const handleIncrement = () => handleIncrementQuantity(item);
+      return (
+        <CardProduct
+          imageUrl={item.image}
+          title={item.title}
+          description={item.description}
+          price={item.price}
+          quantity={item.quantity ?? 0}
+          decrement={handleDecrement}
+          addToCart={handleAdd}
+          increment={handleIncrement}
+        />
+      );
+    },
+    [handleIncrementQuantity, handleDecreaseQuantity, handleAddToCart],
+  );
 
-  const handleIncrementQuantity = (product: Product) => {
-    dispatch(incrementQuantity(product.id));
-  };
   return (
     <ShoppingCartView
       products={cartProducts}
       totalItems={totalItems}
       totalAmount={totalAmount}
-      handleDecreaseQuantity={handleDecreaseQuantity}
-      handleIncrementQuantity={handleIncrementQuantity}
-      handleAddToCart={handleAddToCart}
+      renderItem={renderItem}
     />
   );
 };

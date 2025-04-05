@@ -26,22 +26,25 @@ export const cartReducer = (
     case INCREMENT_QUANTITY:
       return {
         ...state,
-        products: state.products.map(item =>
-          item.id === action.payload.productId
-            ? {...item, quantity: (item.quantity ?? 0) + 1}
-            : item,
-        ),
+        products: state.products.map(item => {
+          if (item.id !== action.payload.productId) {
+            return item;
+          }
+          return {...item, quantity: (item.quantity ?? 0) + 1};
+        }),
       };
 
     case DECREMENT_QUANTITY:
       return {
         ...state,
         products: state.products
-          .map(item =>
-            item.id === action.payload.productId
-              ? {...item, quantity: (item.quantity ?? 0) - 1}
-              : item,
-          )
+          .map(item => {
+            if (item.id !== action.payload.productId) {
+              return item;
+            }
+            const newQuantity = (item.quantity ?? 0) - 1;
+            return {...item, quantity: newQuantity};
+          })
           .filter(item => (item.quantity ?? 0) > 0),
       };
 

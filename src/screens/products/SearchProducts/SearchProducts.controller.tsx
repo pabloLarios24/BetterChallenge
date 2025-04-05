@@ -1,19 +1,16 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectFilteredProducts} from '@/store/product/selectors.ts';
-import {Product} from '@/types';
-import {
-  decrementQuantity,
-  incrementQuantity,
-  removeFromCart,
-} from '@/store/cart/actions.ts';
 import {fetchProductsRequest} from '@/store/product/actions.ts';
 import SearchProductsView from '@/screens/products/SearchProducts/SearchProducts.view.tsx';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {ProductStackParams} from '@/navigation/types/ProductsStackParams.tsx';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {addToCartWithToast} from '@/utils/cart.ts';
 import {RootState} from '@/store';
+import {useProductActions} from '@/hooks/useProductActions.ts';
+import {ListRenderItem} from 'react-native';
+import {Product} from '@/types';
+import {CardProduct} from '@/components';
 
 const SearchProductsController: React.FC = () => {
   const route = useRoute<RouteProp<ProductStackParams, 'SearchProduct'>>();
@@ -22,13 +19,19 @@ const SearchProductsController: React.FC = () => {
 
   const dispatch = useDispatch();
   const filteredSelector = useMemo(
-    () => selectFilteredProducts(search),
+    () => selectFilteredProducts(searchQuery),
     [searchQuery],
   );
   const products = useSelector(filteredSelector);
+  const cartProducts = useSelector((state: RootState) => state.cart.products);
+  const {
+    handleAddToCart,
+    handleIncrementQuantity,
+    handleDecreaseQuantity,
+    handleDetailProduct,
+  } = useProductActions(cartProducts);
   const navigation =
     useNavigation<NativeStackNavigationProp<ProductStackParams>>();
-  const cartProducts = useSelector((state: RootState) => state.cart.products);
 
   useEffect(() => {
     dispatch(fetchProductsRequest() as any);
@@ -50,31 +53,37 @@ const SearchProductsController: React.FC = () => {
     setSearchQuery('');
   };
 
-  const handleDecreaseQuantity = (product: Product) => {
-    if (product.quantity) {
-      if (product.quantity === 1) {
-        dispatch(removeFromCart(product.id));
-      } else {
-        dispatch(decrementQuantity(product.id));
-      }
-    }
-  };
-
-  const handleAddToCart = (product: Product) => {
-    addToCartWithToast(dispatch, product, cartProducts);
-  };
-
-  const handleIncrementQuantity = (product: Product) => {
-    dispatch(incrementQuantity(product.id));
-  };
-
   const handleBack = () => {
     navigation.goBack();
   };
 
-  const handleDetailProduct = (product: Product) => {
-    navigation.navigate('DetailProduct', {productId: product.id});
-  };
+  const renderItem: ListRenderItem<Product> = useCallback(
+    ({item}: {item: Product}) => {
+      const handleDecrement = () => handleDecreaseQuantity(item);
+      const handleAdd = () => handleAddToCart(item);
+      const handleIncrement = () => handleIncrementQuantity(item);
+      const handleDetail = () => handleDetailProduct(item);
+      return (
+        <CardProduct
+          imageUrl={item.image}
+          title={item.title}
+          description={item.description}
+          price={item.price}
+          quantity={item.quantity ?? 0}
+          decrement={handleDecrement}
+          addToCart={handleAdd}
+          increment={handleIncrement}
+          onPress={handleDetail}
+        />
+      );
+    },
+    [
+      handleIncrementQuantity,
+      handleDecreaseQuantity,
+      handleAddToCart,
+      handleDetailProduct,
+    ],
+  );
 
   return (
     <SearchProductsView
@@ -83,11 +92,8 @@ const SearchProductsController: React.FC = () => {
       handleCleanSearch={handleCleanSearch}
       products={products}
       handleSubmit={handleSubmit}
-      handleDecreaseQuantity={handleDecreaseQuantity}
-      handleIncrementQuantity={handleIncrementQuantity}
-      handleAddToCart={handleAddToCart}
+      renderItem={renderItem}
       handleBack={handleBack}
-      handleDetailProduct={handleDetailProduct}
     />
   );
 };

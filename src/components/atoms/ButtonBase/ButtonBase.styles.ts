@@ -31,8 +31,8 @@ export const StyledButtonBase = styled.TouchableOpacity<IStyledButtonBaseProps>`
   align-items: center;
   justify-content: center;
   background-color: ${({theme, $type}) => colorsByType[$type](theme)};
-  height: ${({$size}) => sizeStyles[$size].height};
-  width: ${({$size}) => sizeStyles[$size].width};
+  height: ${({$size}) => sizeStyles[$size].height}px;
+  width: ${({$size}) => sizeStyles[$size].width}px;
   border-radius: 5px;
   padding: ${moderateScale(10)}px;
   flex-direction: row;
