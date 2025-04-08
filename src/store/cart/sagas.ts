@@ -1,27 +1,29 @@
 import {delay, put, takeLatest} from 'redux-saga/effects';
 import {
   ADD_TO_CART_REQUEST,
-  ADD_TO_CART_SUCCESS,
   DECREMENT_QUANTITY_REQUEST,
-  DECREMENT_QUANTITY_SUCCESS,
   IAddToCartSuccessAction,
   IDecrementCartSuccessAction,
   IIncrementCartSuccessAction,
   INCREMENT_QUANTITY_REQUEST,
-  INCREMENT_QUANTITY_SUCCESS,
   IRemoveFromCartSuccessAction,
   REMOVE_FROM_CART_REQUEST,
-  REMOVE_FROM_CART_SUCCESS,
 } from './types';
 import {addToast, hideLoading, showLoading} from '../appState/actions';
 import {TEXTS} from '@/constants';
+import {
+  addToCartSuccess,
+  decrementCartSuccess,
+  incrementCartSuccess,
+  removeFromCartSuccess,
+} from '@/store/cart/actions.ts';
 
 function* handleAddToCart(action: IAddToCartSuccessAction) {
   console.log('handleAddToCart', action.payload);
   try {
     yield put(showLoading());
     yield delay(500);
-    yield put({type: ADD_TO_CART_SUCCESS, payload: action.payload});
+    yield put(addToCartSuccess(action.payload));
 
     yield put(
       addToast({
@@ -39,7 +41,7 @@ function* handleIncrementQuantity(action: IIncrementCartSuccessAction) {
   try {
     yield put(showLoading());
     yield delay(300);
-    yield put({type: INCREMENT_QUANTITY_SUCCESS, payload: action.payload});
+    yield put(incrementCartSuccess(action.payload));
   } finally {
     yield put(hideLoading());
   }
@@ -49,7 +51,7 @@ function* handleDecrementQuantity(action: IDecrementCartSuccessAction) {
   try {
     yield put(showLoading());
     yield delay(300);
-    yield put({type: DECREMENT_QUANTITY_SUCCESS, payload: action.payload});
+    yield put(decrementCartSuccess(action.payload));
   } finally {
     yield put(hideLoading());
   }
@@ -59,7 +61,7 @@ function* handleRemoveFromCart(action: IRemoveFromCartSuccessAction) {
   try {
     yield put(showLoading());
     yield delay(300);
-    yield put({type: REMOVE_FROM_CART_SUCCESS, payload: action.payload});
+    yield put(removeFromCartSuccess(action.payload));
   } finally {
     yield put(hideLoading());
   }
