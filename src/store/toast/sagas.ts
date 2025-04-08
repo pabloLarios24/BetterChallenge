@@ -1,4 +1,3 @@
-// store/toast/sagas.ts
 import {delay, put, takeEvery} from 'redux-saga/effects';
 import {ADD_TOAST, REMOVE_TOAST, Toast} from './types';
 
