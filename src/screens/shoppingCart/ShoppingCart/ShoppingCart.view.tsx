@@ -4,6 +4,7 @@ import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 import {verticalScale} from '@/utils';
 import {AppLayout, SummaryCart, TextBase} from '@/components';
 import {IProduct} from '@/types';
+import {TEXTS} from '@/constants';
 
 interface IShoppingCartViewProps {
   products: IProduct[];
@@ -19,7 +20,7 @@ const ShoppingCartView = ({
   renderItem,
 }: IShoppingCartViewProps) => {
   return (
-    <AppLayout title={'Carrito de compras'}>
+    <AppLayout title={TEXTS.titles.shoppingCart}>
       <FlatList
         key={'FlatListShoppingCart'}
         data={products}
@@ -34,7 +35,7 @@ const ShoppingCartView = ({
           />
         }
         ListEmptyComponent={
-          <TextBase text={'Sin productos en el carrito'} textType={'h1'} bold />
+          <TextBase text={TEXTS.messagesEmpty.cart} textType={'h1'} bold />
         }
       />
     </AppLayout>

@@ -4,12 +4,12 @@ import {IconName} from '@/components/atoms/Icon/icons.ts';
 import {selectTotalCartItems} from '@/store/cart/selectors.ts';
 import {useSelector} from 'react-redux';
 
-type RouteName = 'HomeTab' | 'ShoppingCartTab' | 'Menu';
+type RouteName = 'HomeTab' | 'ShoppingCartTab' | 'MenuTab';
 
 const icons: Record<RouteName, IconName> = {
   HomeTab: 'home',
   ShoppingCartTab: 'shoppingCart',
-  Menu: 'menu',
+  MenuTab: 'menu',
 };
 
 export const TabBarWrapper = ({

@@ -6,7 +6,6 @@ import SearchProductsView from '@/screens/products/SearchProducts/SearchProducts
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {ProductStackParams} from '@/navigation/types/ProductsStackParams.tsx';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootState} from '@/store';
 import {useProductActions} from '@/hooks/useProductActions.ts';
 import {ListRenderItem} from 'react-native';
 import {IProduct} from '@/types';
@@ -23,13 +22,12 @@ const SearchProductsController: React.FC = () => {
     [searchQuery],
   );
   const products = useSelector(filteredSelector);
-  const cartProducts = useSelector((state: RootState) => state.cart.products);
   const {
     handleAddToCart,
     handleIncrementQuantity,
     handleDecreaseQuantity,
     handleDetailProduct,
-  } = useProductActions(cartProducts);
+  } = useProductActions();
   const navigation =
     useNavigation<NativeStackNavigationProp<ProductStackParams>>();
 

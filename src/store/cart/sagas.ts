@@ -14,6 +14,7 @@ import {
   REMOVE_FROM_CART_SUCCESS,
 } from './types';
 import {addToast, hideLoading, showLoading} from '../appState/actions';
+import {TEXTS} from '@/constants';
 
 function* handleAddToCart(action: IAddToCartSuccessAction) {
   console.log('handleAddToCart', action.payload);
@@ -26,7 +27,7 @@ function* handleAddToCart(action: IAddToCartSuccessAction) {
       addToast({
         id: Date.now().toString(),
         type: 'success',
-        message: 'Producto añadido al carrito',
+        message: TEXTS.messages.cartAdded,
       }),
     );
   } finally {

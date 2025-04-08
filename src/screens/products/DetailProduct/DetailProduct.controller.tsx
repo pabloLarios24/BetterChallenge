@@ -3,7 +3,6 @@ import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {ProductStackParams} from '@/navigation/types/ProductsStackParams.tsx';
 import {selectMergedProductById} from '@/store/product/selectors.ts';
 import {useSelector} from 'react-redux';
-import {RootState} from '@/store';
 import DetailProductView from '@/screens/products/DetailProduct/DetailProduct.view.tsx';
 import {useProductActions} from '@/hooks/useProductActions.ts';
 
@@ -14,9 +13,8 @@ const DetailProductController: React.FC = () => {
   const navigation = useNavigation();
 
   const product = useSelector(productSelector);
-  const cartProducts = useSelector((state: RootState) => state.cart.products);
   const {handleAddToCart, handleIncrementQuantity, handleDecreaseQuantity} =
-    useProductActions(cartProducts);
+    useProductActions();
 
   useEffect(() => {
     if (route.params.productId) {

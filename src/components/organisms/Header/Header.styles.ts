@@ -22,7 +22,7 @@ export const IconContainer = styled.TouchableOpacity`
 `;
 
 export const ContentContainer = styled.View<IContainerProps>`
-  width: ${({$needBack}) => ($needBack ? '90%' : '100%')}px;
+  width: ${({$needBack}) => ($needBack ? '90%' : '100%')};
   height: 100%;
   align-items: center;
   justify-content: center;

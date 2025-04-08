@@ -6,6 +6,7 @@ import {
   ImageContainer,
 } from './CardProduct.styles.ts';
 import {ButtonCustom, ImageCustom, SpinnerInput, TextBase} from '@/components';
+import {TEXTS} from '@/constants';
 
 interface ICardProductProps {
   title: string;
@@ -52,7 +53,7 @@ const CardProductPureComponent = ({
               size={'medium'}
               type={'primary'}
               onPress={addToCart}
-              text={'Agregar al carrito'}
+              text={TEXTS.buttons.addToCart}
             />
           )}
         </ButtonContainer>

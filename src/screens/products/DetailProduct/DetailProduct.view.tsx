@@ -11,6 +11,7 @@ import {
   TextBase,
 } from '@/components';
 import {IProduct} from '@/types';
+import {TEXTS} from '@/constants';
 
 interface IDetailProductView {
   product?: IProduct;
@@ -28,7 +29,10 @@ const DetailProductView: React.FC<IDetailProductView> = ({
   handleIncrementQuantity,
 }) => {
   return (
-    <AppLayout needBack onPressBack={handleBack} title={'Detalle del producto'}>
+    <AppLayout
+      needBack
+      onPressBack={handleBack}
+      title={TEXTS.titles.detailProduct}>
       <ContainerImage>
         <ImageCustom imageUrl={product?.image ?? ''} />
         <Row>
@@ -60,7 +64,7 @@ const DetailProductView: React.FC<IDetailProductView> = ({
               size={'medium'}
               type={'primary'}
               onPress={handleAddToCart}
-              text={'Agregar al carrito'}
+              text={TEXTS.buttons.addToCart}
             />
           )}
         </Row>

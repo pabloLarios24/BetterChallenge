@@ -4,6 +4,7 @@ import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 import {verticalScale} from '@/utils';
 import {AppLayout, TextBase} from '@/components';
 import {IProduct} from '@/types';
+import {TEXTS} from '@/constants';
 
 interface IHomeViewProps {
   search: string;
@@ -26,7 +27,7 @@ const HomeView = ({
       isInput={true}
       onChangeText={setSearch}
       onEndEditing={handleChangeView}
-      placeholder={'Buscar en better challenge'}
+      placeholder={TEXTS.placeholders.search}
       onPressDelete={() => setSearch('')}>
       <FlatList
         key={'FlatListHome'}
@@ -35,7 +36,7 @@ const HomeView = ({
         contentContainerStyle={styles.flatListContent}
         renderItem={renderItem}
         ListEmptyComponent={
-          <TextBase text={'Sin productos'} textType={'h1'} bold />
+          <TextBase text={TEXTS.messagesEmpty.products} textType={'h1'} bold />
         }
       />
     </AppLayout>

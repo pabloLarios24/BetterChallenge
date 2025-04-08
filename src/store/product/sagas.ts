@@ -4,6 +4,7 @@ import {FETCH_PRODUCTS_REQUEST} from './types';
 import {getProducts} from '@/services/product.service';
 import {IProduct} from '@/types';
 import {addToast, hideLoading, showLoading} from '@/store/appState/actions.ts';
+import {TEXTS} from '@/constants';
 
 function* fetchProductsSaga(): Generator<any, void, IProduct[]> {
   try {
@@ -15,7 +16,7 @@ function* fetchProductsSaga(): Generator<any, void, IProduct[]> {
       addToast({
         id: Date.now().toString(),
         type: 'error',
-        message: 'Error al cargar los productos',
+        message: TEXTS.messages.cantLoadedProducts,
       }),
     );
   } finally {

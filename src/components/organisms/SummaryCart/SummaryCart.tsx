@@ -1,6 +1,7 @@
 import React from 'react';
 import {ButtonContainer, Container, Row} from './SummaryCart.styles.ts';
 import {ButtonCustom, TextBase} from '@/components';
+import {TEXTS} from '@/constants';
 
 interface ISummaryCart {
   subTotal: number;
@@ -20,7 +21,7 @@ export const SummaryCart = ({subTotal, totalItems, onPress}: ISummaryCart) => {
           size={'large'}
           type={'primary'}
           onPress={onPress}
-          text={`Proceder al pago (${totalItems} productos)`}
+          text={TEXTS.buttons.startPay(totalItems)}
         />
       </ButtonContainer>
     </Container>

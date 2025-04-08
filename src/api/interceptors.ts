@@ -1,6 +1,7 @@
 import {AxiosInstance} from 'axios';
 import {store} from '@/store';
 import {ADD_TOAST} from '@/store/appState/types.ts';
+import {TEXTS} from '@/constants';
 
 export const setupInterceptors = (axiosInstance: AxiosInstance) => {
   axiosInstance.interceptors.response.use(
@@ -8,21 +9,22 @@ export const setupInterceptors = (axiosInstance: AxiosInstance) => {
     error => {
       if (error.response) {
         const status = error.response.status;
-        let message = 'Error inesperado';
+        let message = TEXTS.messages.generalError;
         switch (status) {
           case 401:
-            message = 'No autorizado. Por favor inicia sesión';
+            message = TEXTS.messages.unauthorized;
+            break;
+          case 404:
+            message = TEXTS.messages.notFound;
             break;
           case 500:
-            message = 'Error del servidor. Intenta más tarde';
+            message = TEXTS.messages.serverError;
             break;
-          default:
-            message = 'Algo salió mal, intenta nuevamente';
         }
         store.dispatch({
           type: ADD_TOAST,
           payload: {
-            id: Date.now(),
+            id: Date.now().toString(),
             type: 'error',
             message,
           },
@@ -31,9 +33,9 @@ export const setupInterceptors = (axiosInstance: AxiosInstance) => {
         store.dispatch({
           type: ADD_TOAST,
           payload: {
-            id: Date.now(),
+            id: Date.now().toString(),
             type: 'error',
-            message: 'Error de red. Verifica tu conexión',
+            message: TEXTS.messages.connectionError,
           },
         });
       }

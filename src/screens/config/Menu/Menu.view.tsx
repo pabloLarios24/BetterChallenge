@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppLayout, ButtonCustom} from '@/components';
 import {Container} from '@/screens/config/Menu/Menu.styles.ts';
+import {TEXTS} from '@/constants';
 
 interface IMenuViewProps {
   isLight: boolean;
@@ -14,7 +15,7 @@ const MenuView: React.FC<IMenuViewProps> = ({isLight, handleToggleTheme}) => {
         <ButtonCustom
           size={'large'}
           type={'primary'}
-          text={isLight ? 'Dark Theme' : 'Light Theme'}
+          text={isLight ? TEXTS.buttons.darkTheme : TEXTS.buttons.lightTheme}
           textType={'h3'}
           bold
           name={isLight ? 'moon' : 'sun'}

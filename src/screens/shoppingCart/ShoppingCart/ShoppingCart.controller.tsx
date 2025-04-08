@@ -18,7 +18,7 @@ const ShoppingCartController: React.FC = () => {
   const totalAmount = useSelector(selectTotalCartPrice);
 
   const {handleAddToCart, handleIncrementQuantity, handleDecreaseQuantity} =
-    useProductActions(cartProducts);
+    useProductActions();
 
   const renderItem: ListRenderItem<IProduct> = useCallback(
     ({item}: {item: IProduct}) => {

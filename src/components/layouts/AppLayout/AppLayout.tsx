@@ -3,9 +3,11 @@ import {Container, ContentContainer} from './AppLayout.styles.ts';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Header, IHeaderProps} from '@/components';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '@/store';
 import Toast from 'react-native-toast-message';
+import {Dispatch} from 'redux';
+import {AppActionTypes} from '@/store/appState/types.ts';
 
 interface IAppLayoutProps extends IHeaderProps {
   children: React.ReactNode;
@@ -25,6 +27,7 @@ export const AppLayout = ({
 }: IAppLayoutProps) => {
   const insets = useSafeAreaInsets();
   const {loading, toasts} = useSelector((state: RootState) => state.appState);
+  const dispatch = useDispatch<Dispatch<AppActionTypes>>();
 
   useEffect(() => {
     if (toasts.length > 0) {
@@ -36,7 +39,7 @@ export const AppLayout = ({
         visibilityTime: 3000,
       });
     }
-  }, [toasts]);
+  }, [toasts, dispatch]);
   return (
     <Container $topInset={insets.top}>
       <Spinner visible={loading} />

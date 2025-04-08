@@ -4,6 +4,7 @@ import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 import {verticalScale} from '@/utils';
 import {AppLayout, TextBase} from '@/components';
 import {IProduct} from '@/types';
+import {TEXTS} from '@/constants';
 
 interface ISearchProductsProps {
   search: string;
@@ -31,7 +32,7 @@ const SearchProducts = ({
       needBack
       onPressBack={handleBack}
       onChangeText={setSearch}
-      placeholder={'Buscar en better challenge'}
+      placeholder={TEXTS.placeholders.search}
       onEndEditing={handleSubmit}
       onPressDelete={handleCleanSearch}>
       <FlatList
@@ -41,7 +42,11 @@ const SearchProducts = ({
         contentContainerStyle={styles.flatListContent}
         renderItem={renderItem}
         ListEmptyComponent={
-          <TextBase text={'Sin resultados'} textType={'h1'} bold />
+          <TextBase
+            text={TEXTS.messagesEmpty.resultProduct}
+            textType={'h1'}
+            bold
+          />
         }
       />
     </AppLayout>
