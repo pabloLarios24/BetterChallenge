@@ -1,36 +1,70 @@
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 
-export const ADD_TO_CART = 'ADD_TO_CART ';
-export const INCREMENT_QUANTITY = 'INCREMENT_QUANTITY';
-export const DECREMENT_QUANTITY = 'DECREMENT_QUANTITY';
-export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+// ADD
+export const ADD_TO_CART_REQUEST = 'ADD_TO_CART_REQUEST';
+export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
 
-export interface AddToCartAction {
-  type: typeof ADD_TO_CART;
-  payload: Product;
+// INCREMENT
+export const INCREMENT_QUANTITY_REQUEST = 'INCREMENT_QUANTITY_REQUEST';
+export const INCREMENT_QUANTITY_SUCCESS = 'INCREMENT_QUANTITY_SUCCESS';
+
+// DECREMENT
+export const DECREMENT_QUANTITY_REQUEST = 'DECREMENT_QUANTITY_REQUEST';
+export const DECREMENT_QUANTITY_SUCCESS = 'DECREMENT_QUANTITY_SUCCESS';
+// REMOVE
+export const REMOVE_FROM_CART_REQUEST = 'REMOVE_FROM_CART_REQUEST';
+export const REMOVE_FROM_CART_SUCCESS = 'REMOVE_FROM_CART_SUCCESS';
+
+export interface IAddToCartRequestAction {
+  type: typeof ADD_TO_CART_REQUEST;
+  payload: IProduct;
 }
 
-export interface IncrementQuantityAction {
-  type: typeof INCREMENT_QUANTITY;
-  payload: {productId: number};
+export interface IAddToCartSuccessAction {
+  type: typeof ADD_TO_CART_SUCCESS;
+  payload: IProduct;
 }
 
-export interface DecrementQuantityAction {
-  type: typeof DECREMENT_QUANTITY;
-  payload: {productId: number};
+export interface IIncrementCartRequestAction {
+  type: typeof INCREMENT_QUANTITY_REQUEST;
+  payload: number;
 }
 
-export interface RemoveFromCartAction {
-  type: typeof REMOVE_FROM_CART;
-  payload: {productId: number};
+export interface IIncrementCartSuccessAction {
+  type: typeof INCREMENT_QUANTITY_SUCCESS;
+  payload: number;
+}
+
+export interface IDecrementCartRequestAction {
+  type: typeof DECREMENT_QUANTITY_REQUEST;
+  payload: number;
+}
+
+export interface IDecrementCartSuccessAction {
+  type: typeof DECREMENT_QUANTITY_SUCCESS;
+  payload: number;
+}
+
+export interface IRemoveFromCartRequestAction {
+  type: typeof REMOVE_FROM_CART_REQUEST;
+  payload: number;
+}
+
+export interface IRemoveFromCartSuccessAction {
+  type: typeof REMOVE_FROM_CART_SUCCESS;
+  payload: number;
 }
 
 export type CartActionTypes =
-  | AddToCartAction
-  | IncrementQuantityAction
-  | DecrementQuantityAction
-  | RemoveFromCartAction;
+  | IAddToCartRequestAction
+  | IAddToCartSuccessAction
+  | IIncrementCartRequestAction
+  | IIncrementCartSuccessAction
+  | IDecrementCartRequestAction
+  | IDecrementCartSuccessAction
+  | IRemoveFromCartRequestAction
+  | IRemoveFromCartSuccessAction;
 
-export interface CartState {
-  products: Product[];
+export interface ICartState {
+  products: IProduct[];
 }

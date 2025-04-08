@@ -51,7 +51,7 @@ redux-persist to persist cart state in AsyncStorage
 
 ### 🛒 Features
 
-- Product list with quantity from cart
+- IProduct list with quantity from cart
 
 - Cart management (add, update, remove)
 

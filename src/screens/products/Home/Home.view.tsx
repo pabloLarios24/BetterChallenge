@@ -3,14 +3,14 @@ import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 
 import {verticalScale} from '@/utils';
 import {AppLayout, TextBase} from '@/components';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 
 interface IHomeViewProps {
   search: string;
   setSearch: (search: string) => void;
-  products: Product[];
+  products: IProduct[];
   handleChangeView: () => void;
-  renderItem: ListRenderItem<Product>;
+  renderItem: ListRenderItem<IProduct>;
 }
 
 const HomeView = ({

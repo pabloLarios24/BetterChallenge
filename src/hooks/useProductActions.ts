@@ -3,45 +3,50 @@ import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {Product} from '@/types';
-import {decrementQuantity, incrementQuantity} from '@/store/cart/actions';
-import {addToCartWithToast} from '@/utils/cart.ts';
+import {IProduct} from '@/types';
 import {ProductStackParams} from '@/navigation/types/ProductsStackParams.tsx';
+import {
+  addToCartRequest,
+  decrementCartRequest,
+  incrementCartRequest,
+} from '@/store/cart/actions.ts';
+import {CartActionTypes} from '@/store/cart/types.ts';
+import {Dispatch} from 'redux';
 
-export const useProductActions = (cartProducts: Product[]) => {
-  const dispatch = useDispatch();
+export const useProductActions = () => {
+  const dispatch = useDispatch<Dispatch<CartActionTypes>>();
   const navigation =
     useNavigation<NativeStackNavigationProp<ProductStackParams>>();
 
   const handleAddToCart = useCallback(
-    (product?: Product) => {
+    (product?: IProduct) => {
       if (product) {
-        addToCartWithToast(dispatch, product, cartProducts);
+        dispatch(addToCartRequest(product));
       }
     },
-    [dispatch, cartProducts],
+    [dispatch],
   );
 
   const handleIncrementQuantity = useCallback(
-    (product?: Product) => {
+    (product?: IProduct) => {
       if (product) {
-        dispatch(incrementQuantity(product.id));
+        dispatch(incrementCartRequest(product.id));
       }
     },
     [dispatch],
   );
 
   const handleDecreaseQuantity = useCallback(
-    (product?: Product) => {
+    (product?: IProduct) => {
       if (product) {
-        dispatch(decrementQuantity(product.id));
+        dispatch(decrementCartRequest(product.id));
       }
     },
     [dispatch],
   );
 
   const handleDetailProduct = useCallback(
-    (product: Product) => {
+    (product: IProduct) => {
       navigation.navigate('DetailProduct', {productId: product.id});
     },
     [navigation],

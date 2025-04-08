@@ -1,27 +1,18 @@
 import {
-  FETCH_PRODUCTS_FAILURE,
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
-  FetchProductsFailureAction,
-  FetchProductsRequestAction,
-  FetchProductsSuccessAction,
+  IFetchProductsRequestAction,
+  IFetchProductsSuccessAction,
 } from './types';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 
-export const fetchProductsRequest = (): FetchProductsRequestAction => ({
+export const fetchProductsRequest = (): IFetchProductsRequestAction => ({
   type: FETCH_PRODUCTS_REQUEST,
 });
 
 export const fetchProductsSuccess = (
-  products: Product[],
-): FetchProductsSuccessAction => ({
+  products: IProduct[],
+): IFetchProductsSuccessAction => ({
   type: FETCH_PRODUCTS_SUCCESS,
   payload: products,
-});
-
-export const fetchProductsFailure = (
-  error: string,
-): FetchProductsFailureAction => ({
-  type: FETCH_PRODUCTS_FAILURE,
-  payload: error,
 });

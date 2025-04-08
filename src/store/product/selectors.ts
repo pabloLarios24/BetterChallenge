@@ -1,13 +1,13 @@
 import {createSelector} from 'reselect';
 import {RootState} from '../index.ts';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 
 const selectProducts = (state: RootState) => state.products.products;
 const selectCart = (state: RootState) => state.cart.products;
 
 export const selectMergedProducts = createSelector(
   [selectProducts, selectCart],
-  (products, cartItems): Product[] => {
+  (products, cartItems): IProduct[] => {
     return products.map(product => {
       const itemInCart = cartItems.find(item => item.id === product.id);
       const quantity = itemInCart?.quantity ?? 0;
@@ -33,6 +33,6 @@ export const selectFilteredProducts = (searchTerm: string) =>
   );
 
 export const selectMergedProductById = (id: number) =>
-  createSelector([selectMergedProducts], (products: Product[]) =>
+  createSelector([selectMergedProducts], (products: IProduct[]) =>
     products.find(product => product.id === id),
   );

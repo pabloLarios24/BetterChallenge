@@ -1,30 +1,21 @@
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST';
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
-export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 
-export interface FetchProductsRequestAction {
+export interface IFetchProductsRequestAction {
   type: typeof FETCH_PRODUCTS_REQUEST;
 }
 
-export interface FetchProductsSuccessAction {
+export interface IFetchProductsSuccessAction {
   type: typeof FETCH_PRODUCTS_SUCCESS;
-  payload: Product[];
-}
-
-export interface FetchProductsFailureAction {
-  type: typeof FETCH_PRODUCTS_FAILURE;
-  payload: string;
+  payload: IProduct[];
 }
 
 export type ProductActionTypes =
-  | FetchProductsRequestAction
-  | FetchProductsSuccessAction
-  | FetchProductsFailureAction;
+  | IFetchProductsRequestAction
+  | IFetchProductsSuccessAction;
 
-export interface ProductState {
-  loading: boolean;
-  products: Product[];
-  error: string | null;
+export interface IProductState {
+  products: IProduct[];
 }

@@ -1,6 +1,6 @@
 import {AxiosInstance} from 'axios';
 import {store} from '@/store';
-import {ADD_TOAST} from '@/store/toast/types.ts';
+import {ADD_TOAST} from '@/store/appState/types.ts';
 
 export const setupInterceptors = (axiosInstance: AxiosInstance) => {
   axiosInstance.interceptors.response.use(

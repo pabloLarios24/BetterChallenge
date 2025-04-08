@@ -9,7 +9,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootState} from '@/store';
 import {useProductActions} from '@/hooks/useProductActions.ts';
 import {ListRenderItem} from 'react-native';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 import {CardProduct} from '@/components';
 
 const SearchProductsController: React.FC = () => {
@@ -57,8 +57,8 @@ const SearchProductsController: React.FC = () => {
     navigation.goBack();
   };
 
-  const renderItem: ListRenderItem<Product> = useCallback(
-    ({item}: {item: Product}) => {
+  const renderItem: ListRenderItem<IProduct> = useCallback(
+    ({item}: {item: IProduct}) => {
       const handleDecrement = () => handleDecreaseQuantity(item);
       const handleAdd = () => handleAddToCart(item);
       const handleIncrement = () => handleIncrementQuantity(item);

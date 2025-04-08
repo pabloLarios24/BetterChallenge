@@ -1,34 +1,34 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectMergedProducts} from '@/store/product/selectors.ts';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 import {fetchProductsRequest} from '@/store/product/actions.ts';
 import HomeView from '@/screens/products/Home/Home.view.tsx';
 import {ProductStackParams} from '@/navigation/types/ProductsStackParams.tsx';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
-import {RootState} from '@/store';
 import {ListRenderItem} from 'react-native';
 import {CardProduct} from '@/components';
 import {useProductActions} from '@/hooks/useProductActions.ts';
+import {Dispatch} from 'redux';
+import {ProductActionTypes} from '@/store/product/types.ts';
 
 const HomeController: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<Dispatch<ProductActionTypes>>();
   const products = useSelector(selectMergedProducts);
-  const cartProducts = useSelector((state: RootState) => state.cart.products);
   const {
     handleAddToCart,
     handleIncrementQuantity,
     handleDecreaseQuantity,
     handleDetailProduct,
-  } = useProductActions(cartProducts);
+  } = useProductActions();
   const navigation =
     useNavigation<NativeStackNavigationProp<ProductStackParams>>();
 
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    dispatch(fetchProductsRequest() as any);
+    dispatch(fetchProductsRequest());
   }, [dispatch]);
 
   const handleChangeView = () => {
@@ -36,8 +36,8 @@ const HomeController: React.FC = () => {
     setSearch('');
   };
 
-  const renderItem: ListRenderItem<Product> = useCallback(
-    ({item}: {item: Product}) => {
+  const renderItem: ListRenderItem<IProduct> = useCallback(
+    ({item}: {item: IProduct}) => {
       const handleDecrement = () => handleDecreaseQuantity(item);
       const handleAdd = () => handleAddToCart(item);
       const handleIncrement = () => handleIncrementQuantity(item);

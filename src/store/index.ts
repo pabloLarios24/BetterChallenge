@@ -10,7 +10,7 @@ import {persistReducer, persistStore} from 'redux-persist';
 import {productReducer} from './product/reducer';
 import RootSaga from './RootSaga.ts';
 import {cartReducer} from './cart/reducer.ts';
-import {toastReducer} from '@/store/toast/reducer.ts';
+import {appStateReducer} from '@/store/appState/reducer.ts';
 
 const persistConfig = {
   key: 'root',
@@ -21,7 +21,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   cart: cartReducer,
   products: productReducer,
-  toast: toastReducer,
+  appState: appStateReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

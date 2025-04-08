@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {ListRenderItem} from 'react-native';
 
 import {RootState} from '@/store';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 import ShoppingCartView from '@/screens/shoppingCart/ShoppingCart/ShoppingCart.view.tsx';
 import {
   selectTotalCartItems,
@@ -20,8 +20,8 @@ const ShoppingCartController: React.FC = () => {
   const {handleAddToCart, handleIncrementQuantity, handleDecreaseQuantity} =
     useProductActions(cartProducts);
 
-  const renderItem: ListRenderItem<Product> = useCallback(
-    ({item}: {item: Product}) => {
+  const renderItem: ListRenderItem<IProduct> = useCallback(
+    ({item}: {item: IProduct}) => {
       const handleDecrement = () => handleDecreaseQuantity(item);
       const handleAdd = () => handleAddToCart(item);
       const handleIncrement = () => handleIncrementQuantity(item);

@@ -24,8 +24,7 @@ export const AppLayout = ({
   onEndEditing,
 }: IAppLayoutProps) => {
   const insets = useSafeAreaInsets();
-  const loading = useSelector((state: RootState) => state.products.loading);
-  const toasts = useSelector((state: RootState) => state.toast.toasts);
+  const {loading, toasts} = useSelector((state: RootState) => state.appState);
 
   useEffect(() => {
     if (toasts.length > 0) {

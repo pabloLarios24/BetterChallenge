@@ -1,12 +1,7 @@
 import {delay, put, takeEvery} from 'redux-saga/effects';
-import {ADD_TOAST, REMOVE_TOAST, Toast} from './types';
+import {ADD_TOAST, IAddToast, REMOVE_TOAST} from './types';
 
-interface AddToastAction {
-  type: typeof ADD_TOAST;
-  payload: Toast;
-}
-
-function* handleToastExpire(action: AddToastAction) {
+function* handleToastExpire(action: IAddToast) {
   yield delay(5000);
   yield put({type: REMOVE_TOAST, payload: action.payload.id});
 }

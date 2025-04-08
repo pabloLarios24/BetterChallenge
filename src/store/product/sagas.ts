@@ -1,16 +1,16 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import {fetchProductsFailure, fetchProductsSuccess} from './actions';
+import {fetchProductsSuccess} from './actions';
 import {FETCH_PRODUCTS_REQUEST} from './types';
 import {getProducts} from '@/services/product.service';
-import {Product} from '@/types';
-import {addToast} from '@/store/toast/actions.ts';
+import {IProduct} from '@/types';
+import {addToast, hideLoading, showLoading} from '@/store/appState/actions.ts';
 
-function* fetchProductsSaga(): Generator<any, void, Product[]> {
+function* fetchProductsSaga(): Generator<any, void, IProduct[]> {
   try {
+    yield put(showLoading());
     const products = yield call(getProducts);
     yield put(fetchProductsSuccess(products));
   } catch (error: any) {
-    yield put(fetchProductsFailure(error.message));
     yield put(
       addToast({
         id: Date.now().toString(),
@@ -18,6 +18,8 @@ function* fetchProductsSaga(): Generator<any, void, Product[]> {
         message: 'Error al cargar los productos',
       }),
     );
+  } finally {
+    yield put(hideLoading());
   }
 }
 

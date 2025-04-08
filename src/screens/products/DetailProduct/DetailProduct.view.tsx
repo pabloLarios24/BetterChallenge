@@ -10,10 +10,10 @@ import {
   SpinnerInput,
   TextBase,
 } from '@/components';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 
 interface IDetailProductView {
-  product?: Product;
+  product?: IProduct;
   handleDecreaseQuantity: () => void;
   handleIncrementQuantity: () => void;
   handleAddToCart: () => void;

@@ -3,13 +3,13 @@ import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 
 import {verticalScale} from '@/utils';
 import {AppLayout, SummaryCart, TextBase} from '@/components';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 
 interface IShoppingCartViewProps {
-  products: Product[];
+  products: IProduct[];
   totalAmount: number;
   totalItems: number;
-  renderItem: ListRenderItem<Product>;
+  renderItem: ListRenderItem<IProduct>;
 }
 
 const ShoppingCartView = ({

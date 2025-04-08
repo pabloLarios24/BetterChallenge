@@ -3,16 +3,16 @@ import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 
 import {verticalScale} from '@/utils';
 import {AppLayout, TextBase} from '@/components';
-import {Product} from '@/types';
+import {IProduct} from '@/types';
 
 interface ISearchProductsProps {
   search: string;
   setSearch: (search: string) => void;
-  products: Product[];
+  products: IProduct[];
   handleBack: () => void;
   handleSubmit: () => void;
   handleCleanSearch: () => void;
-  renderItem: ListRenderItem<Product>;
+  renderItem: ListRenderItem<IProduct>;
 }
 
 const SearchProducts = ({
